@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -82,56 +83,59 @@ export default function Home() {
   };
 
   return (
-    <main className="max-w-[100rem] min-h-[100vh] mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold my-8 text-center">Product Listing</h1>
+    <React.Fragment>
+      <Navbar />
+      <main className="max-w-[100rem] min-h-[100vh] mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold my-8 text-center">Product Listing</h1>
 
-      {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <div className="loader"></div>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-          {products.map((product: any) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
-
-      <div className="flex justify-center my-8">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
-        >
-          Previous
-        </button>
-        {generatePagination().map((page, index) =>
-          typeof page === "number" ? (
-            <button
-              key={index}
-              onClick={() => handlePageChange(page)}
-              className={`px-4 py-2 mx-1 rounded ${
-                currentPage === page
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-black hover:bg-gray-300"
-              }`}
-            >
-              {page}
-            </button>
-          ) : (
-            <span key={index} className="px-4 py-2 mx-1">
-              ...
-            </span>
-          )
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="loader"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+            {products.map((product: any) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         )}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
-        >
-          Next
-        </button>
-      </div>
-    </main>
+
+        <div className="flex justify-center my-8">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+          >
+            Previous
+          </button>
+          {generatePagination().map((page, index) =>
+            typeof page === "number" ? (
+              <button
+                key={index}
+                onClick={() => handlePageChange(page)}
+                className={`px-4 py-2 mx-1 rounded ${
+                  currentPage === page
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-black hover:bg-gray-300"
+                }`}
+              >
+                {page}
+              </button>
+            ) : (
+              <span key={index} className="px-4 py-2 mx-1">
+                ...
+              </span>
+            )
+          )}
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+          >
+            Next
+          </button>
+        </div>
+      </main>
+    </React.Fragment>
   );
 }
