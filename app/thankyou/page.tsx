@@ -21,7 +21,7 @@ export default function ThankYou() {
           Your order has been successfully placed.
         </p>
         <p className="text-gray-400 mb-8">
-          We've sent a confirmation email with your order details.
+          We have sent a confirmation email with your order details.
         </p>
         <Link
           href="/"
