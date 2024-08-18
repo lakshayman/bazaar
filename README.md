@@ -17,6 +17,10 @@ This modern e-commerce application is built with Next.js, featuring a responsive
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
+## Hosted Link
+
+Check out the live version of Bazaar here: [Bazaar Live](https://bazaar.lakshaymanchanda.com/)
+
 ## Getting Started
 
 ### Prerequisites
