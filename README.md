@@ -1,4 +1,4 @@
-# Next.js E-commerce Application
+# Bazaar
 
 This modern e-commerce application is built with Next.js, featuring a responsive design and integration with the DummyJSON API for product data.
 
