@@ -11,7 +11,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const savedCart = localStorage.getItem("cart");
       return savedCart ? JSON.parse(savedCart) : [];
     }
-    return []; // Return an empty array when `localStorage` is not available
+    return [];
   });
 
   useEffect(() => {
