@@ -141,12 +141,12 @@ export default function Home() {
           </div>
         ) : (
           <React.Fragment>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mb-4">
               {products.map((product: any) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
-            <div className="flex justify-center my-8">
+            <div className="flex justify-center my-8 max-sm:hidden">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
@@ -173,6 +173,27 @@ export default function Home() {
                   </span>
                 )
               )}
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+              >
+                Next
+              </button>
+            </div>
+            <div className="flex justify-center my-8 sm:hidden">
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+              >
+                Previous
+              </button>
+              <button
+                className={`px-4 py-2 mx-1 rounded bg-gray-800 text-white`}
+              >
+                {currentPage}
+              </button>
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
