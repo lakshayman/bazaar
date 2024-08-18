@@ -3,11 +3,13 @@
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { calculateCartTotal } from "../lib/cart";
+import { useRouter } from "next/navigation";
 
 export default function CartSummary() {
   const { cart } = useCart();
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
+  const [error, setError] = useState("");
 
   const discountCodes: any = {
     SAVE10: 0.1,
@@ -17,6 +19,7 @@ export default function CartSummary() {
 
   const subtotal = calculateCartTotal(cart);
   const total = subtotal - appliedDiscount;
+  const router = useRouter();
 
   const applyDiscount = () => {
     if (discountCode in discountCodes) {
@@ -28,8 +31,9 @@ export default function CartSummary() {
           setAppliedDiscount(discount);
         }
       }
+      setError("");
     } else {
-      alert("Invalid discount code");
+      setError("Invalid discount code");
     }
   };
 
@@ -54,8 +58,9 @@ export default function CartSummary() {
           value={discountCode}
           onChange={(e) => setDiscountCode(e.target.value)}
           placeholder="Enter discount code"
-          className="w-full p-2 border rounded"
+          className={`w-full p-2 ${error && 'border-red-500'} border rounded`}
         />
+        {error && <p className="text-red-600">{error}</p>}
         <button
           onClick={applyDiscount}
           className="w-full mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
@@ -80,7 +85,7 @@ export default function CartSummary() {
           ))}
         </ul>
       </div>
-      <button className="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+      <button onClick={()=>router.push("/thankyou")} className="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
         Proceed to Checkout
       </button>
     </div>
