@@ -1,11 +1,7 @@
 "use client";
 
-import { CartItem as CartItemType } from "../types";
+import { CartItemProps } from "../types";
 import { useCart } from "../context/CartContext";
-
-interface CartItemProps {
-  item: CartItemType;
-}
 
 export default function CartItem({ item }: CartItemProps) {
   const { removeFromCart, updateQuantity } = useCart();

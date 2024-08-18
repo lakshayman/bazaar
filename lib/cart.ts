@@ -34,6 +34,10 @@ export const updateItemQuantity = (
     .filter((item) => item.quantity > 0);
 };
 
+export const getItem = (cart: CartItem[], productId: number) => {
+  return cart.find(item => item.id === productId);
+}
+
 export const calculateCartTotal = (cart: CartItem[]): number => {
   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 };

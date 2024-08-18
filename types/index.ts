@@ -16,3 +16,11 @@ export interface CartContextType {
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, newQuantity: number) => void;
 }
+
+export interface CartItemProps {
+  item: CartItem;
+}
+
+export interface ProductCardProps {
+  product: Product;
+}
